@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agilite CNC</title>
+<link rel="icon" href="icon.ico">
+<link rel="stylesheet" href="style.css">
+<script src="shim.js"></script>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.min.js" } }
+</script>
+</head>
+<body>
+<header class="bar">
+  <div class="brand"><img src="logo.png" alt=""><span>Agilite CNC</span></div>
+  <nav class="tabs">
+    <button data-mode="prepare" class="on">Prepare</button>
+    <button data-mode="preview">Preview</button>
+  </nav>
+  <div class="file" id="filechip" hidden></div>
+  <div class="grow"></div>
+  <button class="ghost user" id="userbtn" title="Who's working: your presets, speeds and preferences (click to switch)" hidden></button>
+  <button class="ghost" id="openbtn" title="A DXF, STEP or STL part, or an AGILITE CNC project (Ctrl+O)">Open</button>
+  <button class="ghost" id="savebtn" title="Save the job as a project: the parts and every setting (Ctrl+S; Ctrl+Shift+S: save as)" disabled>Save</button>
+  <button class="primary" id="sendbtn" disabled>Send to machine</button>
+  <div class="busybar" id="busybar"><i></i></div>
+</header>
+
+<main>
+  <aside class="left" id="left">
+    <section>
+      <h3>Machine</h3>
+      <div class="machine"><div class="mico"></div><div><b id="mname">Stepcraft M700</b><small id="msensor">Tool sensor · pauses for each end mill change</small></div></div>
+    </section>
+    <section>
+      <h3>Material</h3>
+      <div class="matrow"><span class="sw" id="matsw"></span><select id="material" title="Material"></select></div>
+      <p class="note tight" id="matnote"></p>
+      <div class="kv" id="thickrow" hidden><span>Stock thickness</span><span id="thickbox"></span></div>
+      <p class="note tight" id="partinfo" hidden></p>
+    </section>
+    <section id="partsec" hidden>
+      <h3>Part</h3>
+      <div class="part"><b id="partname"></b><small id="partsize"></small></div>
+      <div id="partlist"></div>
+      <div class="kv" id="uprow" hidden>
+        <span>Side facing up</span>
+        <select id="up"><option value="auto">Auto</option><option value="+Z">Top</option><option value="-Z">Bottom</option>
+          <option value="-Y">Front</option><option value="+Y">Back</option><option value="-X">Left</option><option value="+X">Right</option></select>
+      </div>
+    </section>
+    <section class="proc">
+      <h3>Process <label class="switch" title="Speeds and feeds, the tool sensor and the end mill rack"><input type="checkbox" id="expert"><i></i><span>Advanced</span></label></h3>
+      <div class="seg" id="finishes"></div>
+      <p class="note tight" id="finishnote"></p>
+      <div class="presetrow" id="presetrow"></div>
+      <nav class="ptabs" id="ptabs"><button data-tab="ops" class="on">Operations</button><button data-tab="hold">Tabs &amp; holding</button><button data-tab="bits">End mills</button><button data-tab="set">Settings</button></nav>
+      <div class="pane" id="pane-ops"></div>
+      <div class="pane" id="pane-hold" hidden></div>
+      <div class="pane" id="pane-bits" hidden></div>
+      <div class="pane" id="pane-set" hidden></div>
+    </section>
+    <section id="checksec" hidden>
+      <h3>Checks</h3>
+      <div id="checks"></div>
+    </section>
+  </aside>
+
+  <div class="view" id="view">
+    <canvas id="gl"></canvas>
+    <div class="viewtools">
+      <button data-cam="iso" title="3D view">3D</button>
+      <button data-cam="top" title="From above">Top</button>
+      <button data-cam="front" title="From the front">Front</button>
+      <button data-cam="fit" title="Fit the part (double-click the view)">Fit</button>
+      <span class="sep"></span>
+      <button id="undobtn" title="Undo (Ctrl+Z)" disabled>↶</button>
+      <button id="redobtn" title="Redo (Ctrl+Y)" disabled>↷</button>
+      <span class="sep"></span>
+      <label title="Show where the end mill moves"><input type="checkbox" id="showpaths" checked> Toolpaths</label>
+      <label title="Show the fast moves in the air"><input type="checkbox" id="showrapids"> Moves in the air</label>
+      <label title="Colour what is left over after cutting (3D parts)" id="leftlbl" hidden><input type="checkbox" id="showleft"> What's left</label>
+    </div>
+    <div class="drop" id="drop">
+      <div class="dropbox">
+        <img src="logo-dark.png" alt="">
+        <h2>Drop a part here</h2>
+        <p>A DXF drawing, or a STEP or STL model from APF+ or any CAD program</p>
+        <button class="primary" id="openbig">Open a part</button>
+        <small>or press Ctrl+O</small>
+      </div>
+    </div>
+    <div class="dragover" id="dragover"><div>Drop to open</div></div>
+    <div class="toast" id="toast" hidden></div>
+    <div class="player" id="player" hidden>
+      <button class="play" id="play" title="Play (Space)"></button>
+      <div class="scrub"><input type="range" id="scrub" min="0" max="1000" value="1000"><div class="ticks" id="ticks"></div></div>
+      <span class="time" id="time">0:00 / 0:00</span>
+      <div class="speeds" id="speeds"></div>
+    </div>
+    <div class="caption" id="caption" hidden></div>
+  </div>
+
+  <aside class="right" id="right" hidden>
+    <section>
+      <h3>What happens</h3>
+      <div class="total" id="total"></div>
+      <ol class="steps" id="steps"></ol>
+    </section>
+  </aside>
+</main>
+
+<div class="modal" id="modal" hidden><div class="sheet" id="sheet"></div></div>
+<input type="file" id="fileinput" accept=".dxf,.step,.stp,.stl,.acnc" hidden>
+<script type="module" src="app.js"></script>
+</body>
+</html>

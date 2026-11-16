@@ -1,0 +1,157 @@
+[
+ {
+  "name": "6 mm flat 3F aluminium",
+  "tool_type": "Flat end mill",
+  "tool_d": 6,
+  "flutes": 3,
+  "flute_len": 20,
+  "reach": 30,
+  "shank_d": 6,
+  "tool_mat": "Carbide",
+  "owned": false
+ },
+ {
+  "name": "6 mm flat 2F long",
+  "tool_type": "Flat end mill",
+  "tool_d": 6,
+  "flutes": 2,
+  "flute_len": 30,
+  "reach": 50,
+  "shank_d": 6,
+  "tool_mat": "Carbide",
+  "owned": false
+ },
+ {
+  "name": "6 mm ball nose 2F long",
+  "tool_type": "Ball nose",
+  "tool_d": 6,
+  "flutes": 2,
+  "flute_len": 25,
+  "reach": 50,
+  "shank_d": 6,
+  "tool_mat": "Carbide",
+  "owned": false
+ },
+ {
+  "name": "3 mm ball nose 2F long neck",
+  "tool_type": "Ball nose",
+  "tool_d": 3,
+  "flutes": 2,
+  "flute_len": 6,
+  "reach": 25,
+  "shank_d": 6,
+  "neck_d": 2.8,
+  "tool_mat": "Carbide",
+  "owned": false
+ },
+ {
+  "name": "4 mm ball nose 2F carbide",
+  "tool_type": "Ball nose",
+  "tool_d": 4,
+  "flutes": 2,
+  "flute_len": 12,
+  "reach": 20,
+  "shank_d": 4,
+  "tool_mat": "Carbide",
+  "owned": true
+ },
+ {
+  "name": "6 mm flat 1F hss",
+  "tool_type": "Flat end mill",
+  "tool_d": 6,
+  "flutes": 1,
+  "flute_len": 20,
+  "reach": 38,
+  "shank_d": 6,
+  "tool_mat": "HSS",
+  "owned": true,
+  "cuts": [],
+  "speeds": {
+   "Aluminium": {
+    "rpm": 24000.0,
+    "feed": 580.0,
+    "plunge_feed": 120.0,
+    "ramp_feed": 290.0
+   }
+  }
+ },
+ {
+  "name": "4 mm flat 2F carbide",
+  "tool_type": "Flat end mill",
+  "tool_d": 4,
+  "flutes": 2,
+  "flute_len": 12,
+  "reach": 20,
+  "shank_d": 4,
+  "tool_mat": "Carbide",
+  "owned": true
+ },
+ {
+  "name": "3 mm flat 2F carbide",
+  "tool_type": "Flat end mill",
+  "tool_d": 3,
+  "flutes": 2,
+  "flute_len": 10,
+  "reach": 18,
+  "shank_d": 3,
+  "tool_mat": "Carbide",
+  "owned": true
+ },
+ {
+  "name": "3 mm flat 1F hss",
+  "tool_type": "Flat end mill",
+  "tool_d": 3,
+  "flutes": 1,
+  "flute_len": 10,
+  "reach": 10,
+  "shank_d": 4,
+  "tool_mat": "HSS",
+  "owned": true,
+  "cuts": [],
+  "speeds": {
+   "Aluminium": {
+    "rpm": 24000.0,
+    "feed": 290.0,
+    "plunge_feed": 60.0,
+    "ramp_feed": 140.0
+   }
+  }
+ },
+ {
+  "name": "2 mm flat 2F carbide",
+  "tool_type": "Flat end mill",
+  "tool_d": 2,
+  "flutes": 2,
+  "flute_len": 6,
+  "reach": 15,
+  "shank_d": 3.175,
+  "tool_mat": "Carbide",
+  "owned": true
+ },
+ {
+  "name": "6 mm 90 deg V-bit carbide",
+  "tool_type": "V-bit / chamfer",
+  "tool_d": 6,
+  "flutes": 2,
+  "flute_len": 3,
+  "reach": 15,
+  "shank_d": 6,
+  "tool_mat": "Carbide",
+  "tool_angle": 90,
+  "owned": false
+ },
+ {
+  "name": "38 mm surfacing bit XCAN 4 inserts",
+  "tool_type": "Surfacing bit",
+  "tool_d": 38.1,
+  "flutes": 4,
+  "flute_len": 4,
+  "reach": 30,
+  "shank_d": 8,
+  "tool_mat": "Carbide",
+  "owned": true,
+  "cuts": [
+   "Wood / MDF / plywood"
+  ]
+ }
+]
